@@ -1,11 +1,16 @@
 import React from 'react';
 
 const Uploader = () => {
+
+  
+
   return(
-    <h1>
-      This is the Uploader
-    </h1>
+    <div>
+      <h3>This will upload a file</h3>
+      <input type='file' accept='.tmx' />
+    </div>
   )
+  
 }
 
 export default Uploader;
