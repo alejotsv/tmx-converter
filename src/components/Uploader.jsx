@@ -17,7 +17,14 @@ const Uploader = () => {
     console.log(file);
     console.log(typeof(file));
   },[file])
+
+  const languageExtractor = (tmx, startPos) => {
+    
+  }
   
+  const segmentExtractor = (tmx, lang) => {
+
+  }
 
   return(
     <div>
