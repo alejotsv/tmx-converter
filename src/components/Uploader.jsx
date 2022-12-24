@@ -15,6 +15,7 @@ const Uploader = () => {
 
   useEffect(() => {
     console.log(file);
+    console.log(typeof(file));
   },[file])
   
 
