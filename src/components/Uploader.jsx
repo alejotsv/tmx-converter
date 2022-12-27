@@ -36,7 +36,22 @@ const Uploader = () => {
   }
   
   const segmentExtractor = (tmx) => {
+    let origin = [];
+    let target = [];
     
+    // Capture origin and target language
+    let originLangStart = tmx.indexOf('xml:lang="');
+    let originLangEnd = tmx.indexOf('">', originLangStart);
+    let originLang = tmx.substring(originLangStart + 10, originLangEnd);
+    origin.push(originLang);
+
+    let targetLangStart = tmx.indexOf('lang="', originLangEnd);
+    let targetLangEnd = tmx.indexOf('">', targetLangStart);
+    let targetLang = tmx.substring(targetLangStart + 6, targetLangEnd);
+    target.push(targetLang);    
+
+    console.log(origin);
+    console.log(target);
   }
 
 
