@@ -19,13 +19,11 @@ const Uploader = () => {
     if (file!=null){
       console.log(typeof(file));
       console.log(file);
-      segmentExtractor(file);
+      segmentExtractor(file);      
     }
   },[file])
 
   const segmentExtractor = (tmx) => {
-    // let origin = [];
-    // let target = [];
     
     // Capture origin and target language
     let originLangStart = tmx.indexOf('xml:lang="');
@@ -85,7 +83,6 @@ const Uploader = () => {
     <div>
       <h3>This will upload a file</h3>
       <input type='file' accept='.tmx' onChange={handleChange} />
-      { file && <p>{file}</p> }
     </div>
   )
   
