@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 
 const Uploader = () => {
   const [file, setFile] = useState(null);
+  const [originColumn, setOriginColumn] = useState([]);
+  const [targetColumn, setTargetColumn] = useState([]);
 
   const handleChange = (event) => {        
     const reader = new FileReader();
@@ -33,9 +35,10 @@ const Uploader = () => {
     return langArr;
   }
   
-  const segmentExtractor = (tmx, lang) => {
-
+  const segmentExtractor = (tmx) => {
+    
   }
+
 
   return(
     <div>
