@@ -16,8 +16,10 @@ const Uploader = () => {
   }
 
   useEffect(() => {
-    console.log(file);
-    console.log(typeof(file));
+    if (file!=null){
+      console.log(typeof(file));
+      console.log(file);
+    }
   },[file])
 
   const segmentExtractor = (tmx) => {
