@@ -30,7 +30,44 @@ const Uploader = () => {
 
   const createTable = (originArr, targetArr) => {
     return(
-      <p>hello, there</p>
+      <table>
+        <thead>
+          {
+            originArr.map((element, index) => {
+              if(index == 0){
+                return(
+                  <thead>
+                    <tr>
+                      <th>
+                        {element}
+                      </th>
+                      <th>
+                        {targetArr[index]}
+                      </th>
+                    </tr>
+                  </thead>
+                )
+              }
+            })
+          }
+        </thead>
+        <tbody>
+        {
+            originArr.map((element, index) => {
+              if(index == 0){
+                return;
+              } else {
+                return(
+                  <tr key={index}>
+                    <td>{element}</td>
+                    <td>{targetArr[index]}</td>
+                  </tr>
+                )
+              }
+            })
+          }
+        </tbody>
+      </table>
     )
   }
 
@@ -95,7 +132,7 @@ const Uploader = () => {
     <div>
       <h3>This will upload a file</h3>
       <input type='file' accept='.tmx' onChange={handleChange} />
-      { showSegments ? <h1>Here are the segments</h1> : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
+      { showSegments ? createTable(originColumn, targetColumn) : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
     </div>
   )
   
