@@ -36,10 +36,48 @@ const Uploader = () => {
     let targetLangStart = tmx.indexOf('lang="', originLangEnd);
     let targetLangEnd = tmx.indexOf('">', targetLangStart);
     let targetLang = tmx.substring(targetLangStart + 6, targetLangEnd);
-    target.push(targetLang);    
+    target.push(targetLang);
+    
+    // Set origin and target tag to locate segments
+    let originTag = '<tuv xml:lang="' + originLang + '">';
+    let targetTag = '<tuv xml:lang="' + targetLang + '">';
+    
+    // Push orginal segments to array
+    let originTagPos = 0;
+    let segStart = 0;
+    let segEnd = 0;
+    let tempO;
+    while(originTagPos>=0){    
+      originTagPos = tmx.indexOf(originTag, segEnd);
+      if (originTagPos<0){
+        break;
+      }
+      segStart = tmx.indexOf('<seg>', originTagPos) + 5;
+      segEnd = tmx.indexOf('</seg>', originTagPos);
+      tempO = tmx.substring(segStart, segEnd);      
+      origin.push(tempO);
+    }
 
+    // Push target segments to array
+    let targetTagPos = 0;
+    segStart = 0;
+    segEnd = 0;
+    let tempT;
+    while(targetTagPos>=0){    
+      targetTagPos = tmx.indexOf(targetTag, segEnd);
+      if (targetTagPos<0){
+        break;
+      }
+      segStart = tmx.indexOf('<seg>', targetTagPos) + 5;
+      segEnd = tmx.indexOf('</seg>', targetTagPos);
+      tempT = tmx.substring(segStart, segEnd);      
+      target.push(tempT);
+    }
+    
+    
     console.log(origin);
-    console.log(target);
+    console.log(target);    
+
   }
 
 
