@@ -19,6 +19,7 @@ const Uploader = () => {
     if (file!=null){
       console.log(typeof(file));
       console.log(file);
+      segmentExtractor(file);
     }
   },[file])
 
