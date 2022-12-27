@@ -20,21 +20,6 @@ const Uploader = () => {
     console.log(typeof(file));
   },[file])
 
-  const languagesExtractor = (tmx, langArr) => {
-    // Capture origin language
-    let originLangStart = tmx.indexOf('xml:lang="');
-    let originLangEnd = tmx.indexOf('">', originLangStart);
-    let originLang = tmx.substring(originLangStart + 10, originLangEnd);
-    langArr.push(originLang);
-
-    let targetLangStart = tmx.indexOf('lang="', originLangEnd);
-    let targetLangEnd = tmx.indexOf('">', targetLangStart);
-    let targetLang = tmx.substring(targetLangStart + 6, targetLangEnd);
-    langArr.push(targetLang);
-
-    return langArr;
-  }
-  
   const segmentExtractor = (tmx) => {
     let origin = [];
     let target = [];
