@@ -6,6 +6,7 @@ const Uploader = () => {
   const [file, setFile] = useState(null);
   const [originColumn, setOriginColumn] = useState([]);
   const [targetColumn, setTargetColumn] = useState([]);
+  const [showSegments, setShowSegments] = useState(false);
 
   const handleChange = (event) => {        
     const reader = new FileReader();
@@ -13,6 +14,10 @@ const Uploader = () => {
       setFile(event.target.result);
     }  
     reader.readAsText(event.target.files[0]);    
+  }
+  
+  const showSegmentsClick = () => {
+    setShowSegments(true);
   }
 
   useEffect(() => {
@@ -22,6 +27,13 @@ const Uploader = () => {
       segmentExtractor(file);      
     }
   },[file])
+
+  const createTable = (originArr, targetArr) => {
+    return(
+      <p>hello, there</p>
+    )
+  }
+
 
   const segmentExtractor = (tmx) => {
     
@@ -74,7 +86,7 @@ const Uploader = () => {
     
     
     console.log(originColumn);
-    console.log(targetColumn);    
+    console.log(targetColumn);
 
   }
 
@@ -83,6 +95,7 @@ const Uploader = () => {
     <div>
       <h3>This will upload a file</h3>
       <input type='file' accept='.tmx' onChange={handleChange} />
+      { showSegments ? <h1>Here are the segments</h1> : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
     </div>
   )
   
