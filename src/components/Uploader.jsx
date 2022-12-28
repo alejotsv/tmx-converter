@@ -153,7 +153,7 @@ const Uploader = () => {
     <div>        
       { !file &&
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label>Default file input example</Form.Label>
+          <Form.Label>Upload a TMX file</Form.Label>
           <Form.Control type="file" accept='.tmx' onChange={handleChange} />
         </Form.Group>
       }
