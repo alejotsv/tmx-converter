@@ -125,6 +125,8 @@ const Uploader = () => {
   const resetUpload = () => {
     setFile(null);
     setShowSegments(false);
+    setOriginColumn([]);
+    setTargetColumn([]);
   }
 
 
