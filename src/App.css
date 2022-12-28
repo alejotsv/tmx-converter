@@ -1,0 +1,15 @@
+.tmx-table{
+  max-width: 90%;
+  overflow-x: visible;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.column-origin{
+  width: 50%;  
+}
+
+.column-target{
+  width: 50%;
+}

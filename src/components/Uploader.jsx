@@ -45,17 +45,17 @@ const Uploader = () => {
   const createTable = (originArr, targetArr) => {
     return(
       <div className='segment-list'>
-        <Table hover responsive striped className='tmx-table'>
+        <Table bordered hover responsive striped className='tmx-table'>
           <thead>
             {
               originArr.map((element, index) => {
                 if(index == 0){
                   return(                  
                     <tr key={index}>
-                      <th>
+                      <th className='column-origin'>
                         {element}
                       </th>
-                      <th>
+                      <th className='column-target'>
                         {targetArr[index]}
                       </th>
                     </tr>                  
