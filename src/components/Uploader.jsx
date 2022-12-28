@@ -28,45 +28,47 @@ const Uploader = () => {
 
   const createTable = (originArr, targetArr) => {
     return(
-      <table>
-        <thead>
+      <div>
+        <table>
+          <thead>
+            {
+              originArr.map((element, index) => {
+                if(index == 0){
+                  return(                  
+                    <tr key={index}>
+                      <th>
+                        {element}
+                      </th>
+                      <th>
+                        {targetArr[index]}
+                      </th>
+                    </tr>                  
+                  )
+                }
+              })
+            }
+          </thead>
+          <tbody>
           {
-            originArr.map((element, index) => {
-              if(index == 0){
-                return(                  
-                  <tr key={index}>
-                    <th>
-                      {element}
-                    </th>
-                    <th>
-                      {targetArr[index]}
-                    </th>
-                  </tr>                  
-                )
-              }
-            })
-          }
-        </thead>
-        <tbody>
-        {
-            originArr.map((element, index) => {
-              if(index == 0){
-                return;
-              } else {
-                return(
-                  <tr key={index}>
-                    <td>{element}</td>
-                    <td>{targetArr[index]}</td>
-                  </tr>
-                )
-              }
-            })
-          }
-        </tbody>
-      </table>
+              originArr.map((element, index) => {
+                if(index == 0){
+                  return;
+                } else {
+                  return(
+                    <tr key={index}>
+                      <td>{element}</td>
+                      <td>{targetArr[index]}</td>
+                    </tr>
+                  )
+                }
+              })
+            }
+          </tbody>
+        </table>
+        <button onClick={resetUpload} >Upload another file</button>
+      </div>
     )
   }
-
 
   const segmentExtractor = (tmx) => {
     
@@ -115,16 +117,21 @@ const Uploader = () => {
       segEnd = tmx.indexOf('</seg>', targetTagPos);
       tempT = tmx.substring(segStart, segEnd);      
       targetColumn.push(tempT);
-    }   
+    }
 
 
+  }
+
+  const resetUpload = () => {
+    setFile(null);
+    setShowSegments(false);
   }
 
 
   return(
     <div>
       <h3>This will upload a file</h3>      
-      { !showSegments ? <input type='file' accept='.tmx' onChange={handleChange} /> : <button>Upload another</button>}
+      { !file && <input type='file' accept='.tmx' onChange={handleChange} />}
       { showSegments ? createTable(originColumn, targetColumn) : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
     </div>
   )
