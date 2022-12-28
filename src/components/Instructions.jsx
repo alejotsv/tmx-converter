@@ -15,3 +15,5 @@ const Instructions = () => {
     </div>
   )
 }
+
+export default Instructions;

@@ -39,7 +39,7 @@ const Uploader = () => {
 
   const createTable = (originArr, targetArr) => {
     return(
-      <div>
+      <div className='segment-list'>
         <table className='tmx-table'>
           <thead>
             {

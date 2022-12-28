@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 const CopyButton = () => {
   const copyAll = () => {
@@ -14,9 +15,7 @@ const CopyButton = () => {
   }
 
   return(
-    <button onClick={copyAll}>
-      Copy All
-    </button>
+    <Button variant='success' onClick={copyAll}>Copy All</Button>
   )
 }
 
