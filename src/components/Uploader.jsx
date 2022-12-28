@@ -123,8 +123,8 @@ const Uploader = () => {
 
   return(
     <div>
-      <h3>This will upload a file</h3>
-      <input type='file' accept='.tmx' onChange={handleChange} />
+      <h3>This will upload a file</h3>      
+      { !showSegments ? <input type='file' accept='.tmx' onChange={handleChange} /> : <button>Upload another</button>}
       { showSegments ? createTable(originColumn, targetColumn) : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
     </div>
   )
