@@ -7,9 +7,12 @@ const Uploader = () => {
   const [originColumn, setOriginColumn] = useState([]);
   const [targetColumn, setTargetColumn] = useState([]);
   const [showSegments, setShowSegments] = useState(false);
+  const [isTmx, setIsTmx] = useState(true);
 
   const handleChange = (event) => {        
     const reader = new FileReader();
+
+    // Check that the file is a TMX file
     let fileName = event.target.files[0].name;
     let fileExtension = fileName.substring(fileName.length-4);
     if(fileExtension == '.tmx'){
@@ -19,6 +22,7 @@ const Uploader = () => {
       reader.readAsText(event.target.files[0]);
     } else {
       console.log('this is it');
+      setIsTmx(false);
     }
   }
   
@@ -140,6 +144,7 @@ const Uploader = () => {
     <div>
       <h3>This will upload a file</h3>      
       { !file && <input type='file' accept='.tmx' onChange={handleChange} />}
+      { !isTmx && <p>Select a valid .tmx file.</p> }
       { showSegments ? createTable(originColumn, targetColumn) : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
     </div>
   )
