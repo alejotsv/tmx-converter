@@ -3,9 +3,12 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import CopyButton from './CopyButton';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table';
 
 const Uploader = () => {
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState(null);
   const [originColumn, setOriginColumn] = useState([]);
   const [targetColumn, setTargetColumn] = useState([]);
   const [showSegments, setShowSegments] = useState(false);
@@ -15,8 +18,9 @@ const Uploader = () => {
     const reader = new FileReader();
 
     // Check that the file is a TMX file
-    let fileName = event.target.files[0].name;
-    let fileExtension = fileName.substring(fileName.length-4);
+    let name = event.target.files[0].name;
+    setFileName(name);
+    let fileExtension = name.substring(name.length-4);
     if(fileExtension == '.tmx'){
       setIsTmx(true);
       reader.onload = (event) => {
@@ -41,7 +45,7 @@ const Uploader = () => {
   const createTable = (originArr, targetArr) => {
     return(
       <div className='segment-list'>
-        <table className='tmx-table'>
+        <Table hover responsive striped className='tmx-table'>
           <thead>
             {
               originArr.map((element, index) => {
@@ -76,7 +80,7 @@ const Uploader = () => {
               })
             }
           </tbody>
-        </table>
+        </Table>
         <CopyButton />
         <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
       </div>
@@ -145,9 +149,14 @@ const Uploader = () => {
 
   return(
     <div>        
-      { !file && <input type='file' accept='.tmx' onChange={handleChange} />}
+      { !file &&
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Default file input example</Form.Label>
+          <Form.Control type="file" accept='.tmx' onChange={handleChange} />
+        </Form.Group>
+      }
       { !isTmx && <p>Select a valid .tmx file.</p> }
-      { showSegments ? createTable(originColumn, targetColumn) : file ? <Button variant='primary' onClick={showSegmentsClick} >Show segments</Button> : "" }
+      { showSegments ? createTable(originColumn, targetColumn) : file ? <div><h4>File <em>{fileName}</em> uploaded!</h4><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button></div>: "" }
     </div>
   )
   
