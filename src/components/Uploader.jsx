@@ -21,9 +21,7 @@ const Uploader = () => {
   }
 
   useEffect(() => {
-    if (file!=null){
-      console.log(typeof(file));
-      console.log(file);
+    if (file!=null){      
       segmentExtractor(file);      
     }
   },[file])
@@ -75,12 +73,12 @@ const Uploader = () => {
     // Capture origin and target language
     let originLangStart = tmx.indexOf('xml:lang="');
     let originLangEnd = tmx.indexOf('">', originLangStart);
-    let originLang = tmx.substring(originLangStart + 10, originLangEnd);
+    let originLang = tmx.substring(originLangStart + 10, originLangEnd).toLowerCase();
     originColumn.push(originLang);
 
     let targetLangStart = tmx.indexOf('lang="', originLangEnd);
     let targetLangEnd = tmx.indexOf('">', targetLangStart);
-    let targetLang = tmx.substring(targetLangStart + 6, targetLangEnd);
+    let targetLang = tmx.substring(targetLangStart + 6, targetLangEnd).toLowerCase();
     targetColumn.push(targetLang);
     
     // Set origin and target tag to locate segments
