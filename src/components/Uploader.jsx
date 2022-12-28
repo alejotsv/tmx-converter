@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import CopyButton from './CopyButton';
 
 const Uploader = () => {
   const [file, setFile] = useState(null);
@@ -75,6 +76,7 @@ const Uploader = () => {
             }
           </tbody>
         </table>
+        <CopyButton />
         <button onClick={resetUpload} >Upload another file</button>
       </div>
     )
