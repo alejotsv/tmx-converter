@@ -35,17 +35,15 @@ const Uploader = () => {
           {
             originArr.map((element, index) => {
               if(index == 0){
-                return(
-                  <thead>
-                    <tr>
-                      <th>
-                        {element}
-                      </th>
-                      <th>
-                        {targetArr[index]}
-                      </th>
-                    </tr>
-                  </thead>
+                return(                  
+                  <tr key={index}>
+                    <th>
+                      {element}
+                    </th>
+                    <th>
+                      {targetArr[index]}
+                    </th>
+                  </tr>                  
                 )
               }
             })
@@ -119,11 +117,8 @@ const Uploader = () => {
       segEnd = tmx.indexOf('</seg>', targetTagPos);
       tempT = tmx.substring(segStart, segEnd);      
       targetColumn.push(tempT);
-    }
-    
-    
-    console.log(originColumn);
-    console.log(targetColumn);
+    }   
+
 
   }
 
