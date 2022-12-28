@@ -16,12 +16,12 @@ const Uploader = () => {
     let fileName = event.target.files[0].name;
     let fileExtension = fileName.substring(fileName.length-4);
     if(fileExtension == '.tmx'){
+      setIsTmx(true);
       reader.onload = (event) => {
         setFile(event.target.result);
       }  
       reader.readAsText(event.target.files[0]);
-    } else {
-      console.log('this is it');
+    } else {      
       setIsTmx(false);
     }
   }
@@ -39,7 +39,7 @@ const Uploader = () => {
   const createTable = (originArr, targetArr) => {
     return(
       <div>
-        <table>
+        <table className='tmx-table'>
           <thead>
             {
               originArr.map((element, index) => {
