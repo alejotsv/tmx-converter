@@ -13,3 +13,13 @@
 .column-target{
   width: 50%;
 }
+
+.tmx-buttons{
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+.tmx-buttons > button{
+  margin: 1%;
+}

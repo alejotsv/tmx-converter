@@ -81,8 +81,10 @@ const Uploader = () => {
             }
           </tbody>
         </Table>
-        <CopyButton />
-        <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
+        <div className='tmx-buttons'>
+          <CopyButton />
+          <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
+        </div>
       </div>
     )
   }
