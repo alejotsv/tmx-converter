@@ -143,8 +143,7 @@ const Uploader = () => {
 
 
   return(
-    <div>
-      <h3>This will upload a file</h3>      
+    <div>        
       { !file && <input type='file' accept='.tmx' onChange={handleChange} />}
       { !isTmx && <p>Select a valid .tmx file.</p> }
       { showSegments ? createTable(originColumn, targetColumn) : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
