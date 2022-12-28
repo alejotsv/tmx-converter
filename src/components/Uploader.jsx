@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import CopyButton from './CopyButton';
+import Button from 'react-bootstrap/Button';
 
 const Uploader = () => {
   const [file, setFile] = useState(null);
@@ -77,7 +78,7 @@ const Uploader = () => {
           </tbody>
         </table>
         <CopyButton />
-        <button onClick={resetUpload} >Upload another file</button>
+        <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
       </div>
     )
   }
@@ -146,7 +147,7 @@ const Uploader = () => {
     <div>        
       { !file && <input type='file' accept='.tmx' onChange={handleChange} />}
       { !isTmx && <p>Select a valid .tmx file.</p> }
-      { showSegments ? createTable(originColumn, targetColumn) : file ? <button onClick={showSegmentsClick} >Show segments</button> : "" }
+      { showSegments ? createTable(originColumn, targetColumn) : file ? <Button variant='primary' onClick={showSegmentsClick} >Show segments</Button> : "" }
     </div>
   )
   
