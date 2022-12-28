@@ -10,10 +10,16 @@ const Uploader = () => {
 
   const handleChange = (event) => {        
     const reader = new FileReader();
-    reader.onload = (event) => {
-      setFile(event.target.result);
-    }  
-    reader.readAsText(event.target.files[0]);    
+    let fileName = event.target.files[0].name;
+    let fileExtension = fileName.substring(fileName.length-4);
+    if(fileExtension == '.tmx'){
+      reader.onload = (event) => {
+        setFile(event.target.result);
+      }  
+      reader.readAsText(event.target.files[0]);
+    } else {
+      console.log('this is it');
+    }
   }
   
   const showSegmentsClick = () => {
