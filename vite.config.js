@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/tmx-exporter/',
+  base: '/tmx-converter/',
   plugins: [react()],
 })
