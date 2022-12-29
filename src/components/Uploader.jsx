@@ -92,19 +92,19 @@ const Uploader = () => {
   const segmentExtractor = (tmx) => {
     
     // Capture origin and target language
-    let originLangStart = tmx.indexOf('xml:lang="');
-    let originLangEnd = tmx.indexOf('">', originLangStart);
-    let originLang = tmx.substring(originLangStart + 10, originLangEnd);
+    let originLangStart = tmx.indexOf('xml:lang="') + 10;
+    let originLangEnd = tmx.indexOf('"', originLangStart);
+    let originLang = tmx.substring(originLangStart, originLangEnd);
     originColumn.push(originLang.toLowerCase());
 
-    let targetLangStart = tmx.indexOf('lang="', originLangEnd);
-    let targetLangEnd = tmx.indexOf('">', targetLangStart);
-    let targetLang = tmx.substring(targetLangStart + 6, targetLangEnd);
+    let targetLangStart = tmx.indexOf('xml:lang="', originLangEnd) + 10;
+    let targetLangEnd = tmx.indexOf('"', targetLangStart);
+    let targetLang = tmx.substring(targetLangStart, targetLangEnd);
     targetColumn.push(targetLang.toLowerCase());
     
     // Set origin and target tag to locate segments
-    let originTag = '<tuv xml:lang="' + originLang + '">';
-    let targetTag = '<tuv xml:lang="' + targetLang + '">';
+    let originTag = '<tuv xml:lang="' + originLang;
+    let targetTag = '<tuv xml:lang="' + targetLang;
     
     // Push orginal segments to array
     let originTagPos = 0;
