@@ -154,11 +154,11 @@ const Uploader = () => {
       { !file &&
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Upload a TMX file</Form.Label>
-          <Form.Control style={{ width: '40%' }} type="file" accept='.tmx' onChange={handleChange} />
+          <Form.Control type="file" accept='.tmx' onChange={handleChange} />
         </Form.Group>
       }
       { !isTmx && <p>Select a valid .tmx file.</p> }
-      { showSegments ? createTable(originColumn, targetColumn) : file ? <div><h4>File <em>{fileName}</em> uploaded!</h4><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button></div>: "" }
+      { showSegments ? createTable(originColumn, targetColumn) : file ? <div className='file-uploaded'><p>File <em>{fileName}</em> uploaded!</p><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button></div>: "" }
     </div>
   )
   
