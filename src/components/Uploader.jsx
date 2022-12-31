@@ -45,6 +45,10 @@ const Uploader = () => {
   const createTable = (originArr, targetArr) => {
     return(
       <div className='segment-list'>
+        <div className='tmx-buttons'>
+          <CopyButton />
+          <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
+        </div>
         <Table bordered hover responsive striped className='tmx-table'>
           <thead>
             {
@@ -80,11 +84,7 @@ const Uploader = () => {
               })
             }
           </tbody>
-        </Table>
-        <div className='tmx-buttons'>
-          <CopyButton />
-          <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
-        </div>
+        </Table>        
       </div>
     )
   }
