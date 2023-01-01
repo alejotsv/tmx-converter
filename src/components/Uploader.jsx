@@ -50,6 +50,7 @@ const Uploader = () => {
         <div className='tmx-buttons'>
           <CopyButton />
           <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
+          <CSVButton arr={ [originColumn, targetColumn] } />
         </div>
         <Table bordered hover responsive striped className='tmx-table'>
           <thead>
