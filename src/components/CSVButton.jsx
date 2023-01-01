@@ -42,7 +42,7 @@ const CSVButton = () => {
 
   return(
     <div>
-      <h1>Creator component</h1>
+      <h1>CSV component</h1>
       <button onClick={createCSV} >Create CSV</button>
       { url && <a href={url}  download='data.csv'>Download CSV file</a> }
     </div>
