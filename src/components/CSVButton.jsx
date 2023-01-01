@@ -21,17 +21,17 @@ const CSVButton = ({ arr }) => {
     let originItem;
     let targetItem;
 
-    for(let i=0; i<array[0].index; i++){
+    for(let i=0; i<array[0].length; i++){
       originItem = array[0][i];
       targetItem = array[1][i];
 
       addQuotes(originItem);
-      csvString += originItem + ', ';
+      csvString += originItem + ', ';      
 
       addQuotes(targetItem);
       csvString += targetItem + '\n';
+      console.log(csvString)
     }
-
     return csvString;
   }
 
