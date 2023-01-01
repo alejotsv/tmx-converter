@@ -18,17 +18,20 @@ const CSVButton = ({ arr }) => {
 
   const joinArr = (array) => {
     let csvString = '';
-  
-    array.map( row => {
-      row.map( (item, index) => {
-        item = addQuotes(item);
-        if(index == row.length - 1){                  
-          csvString += item + '\n';
-        } else {          
-          csvString += item + ', '
-        }
-      } )
-    });    
+    let originItem;
+    let targetItem;
+
+    for(let i=0; i<array[0].index; i++){
+      originItem = array[0][i];
+      targetItem = array[1][i];
+
+      addQuotes(originItem);
+      csvString += originItem + ', ';
+
+      addQuotes(targetItem);
+      csvString += targetItem + '\n';
+    }
+
     return csvString;
   }
 
