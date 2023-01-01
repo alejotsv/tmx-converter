@@ -2,9 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import CopyButton from './CopyButton';
+import CSVButton from './CSVButton';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
+
 
 const Uploader = () => {
   const [file, setFile] = useState(null);
@@ -158,7 +160,7 @@ const Uploader = () => {
         </Form.Group>
       }
       { !isTmx && <p>Select a valid .tmx file.</p> }
-      { showSegments ? createTable(originColumn, targetColumn) : file ? <div className='file-uploaded'><p>File <em>{fileName}</em> uploaded!</p><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button></div>: "" }
+      { showSegments ? createTable(originColumn, targetColumn) : file ? <div className='file-uploaded'><p>File <em>{fileName}</em> uploaded!</p><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button><CSVButton arr={ [originColumn, targetColumn] } /></div>: "" }
     </div>
   )
   

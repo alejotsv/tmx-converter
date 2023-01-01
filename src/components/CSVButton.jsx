@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-const CSVButton = () => {
-  const [arr, setArr] = useState([]);  
+const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
 
   const createCSV = () => {  
