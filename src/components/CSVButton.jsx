@@ -4,15 +4,12 @@ import Button from 'react-bootstrap/Button';
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
 
-  const createCSV = () => {  
-    console.log('The array is: ' + arr);
+  const createCSV = () => {      
     // Convert to string separated by commas    
     const data = joinArr(arr);
       
-    console.log('This is the data: ' + data);
-    // Crate blob
-    const blob = new Blob([data], { type: 'text/csv' });
-    console.log(blob);
+    // Create blob
+    const blob = new Blob([data], { type: 'text/csv' });    
     // Create URL to download blob
     setUrl(URL.createObjectURL(blob));
   }
@@ -30,8 +27,7 @@ const CSVButton = ({ arr }) => {
       csvString += originItem + ', ';      
 
       addQuotes(targetItem);
-      csvString += targetItem + '\n';
-      console.log(csvString)
+      csvString += targetItem + '\n';      
     }
     return csvString;
   }
