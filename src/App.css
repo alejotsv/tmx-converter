@@ -28,6 +28,11 @@
   padding: 1%;
 }
 
+.btn-area > a{
+  margin-left: 10px;
+}
+
+
 .instructions {
   margin-bottom: 2%;
 }
