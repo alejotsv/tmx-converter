@@ -15,7 +15,7 @@ const CopyButton = () => {
   }
 
   return(
-    <Button variant='success' onClick={copyAll}>Copy All</Button>
+    <Button variant='secondary' onClick={copyAll}>Copy All</Button>
   )
 }
 

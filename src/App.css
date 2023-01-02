@@ -21,7 +21,11 @@
 }
 
 .tmx-buttons > button{
-  margin: 1%;
+  margin-top: 1%;
+}
+
+.btn-area {
+  padding: 1%;
 }
 
 .instructions {

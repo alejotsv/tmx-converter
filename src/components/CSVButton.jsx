@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
@@ -43,9 +44,8 @@ const CSVButton = ({ arr }) => {
   }
 
   return(
-    <div>
-      <h1>CSV component</h1>
-      <button onClick={createCSV} >Create CSV</button>
+    <div className='btn-area'>      
+      <Button variant='success' onClick={createCSV} >Create CSV</Button>
       { url && <a href={url}  download='data.csv'>Download CSV file</a> }
     </div>
   )

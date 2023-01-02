@@ -47,9 +47,13 @@ const Uploader = () => {
   const createTable = (originArr, targetArr) => {
     return(
       <div className='segment-list'>
-        <div className='tmx-buttons'>
-          <CopyButton />
-          <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
+        <div className="tmx-buttons d-flex align-items-center">
+          <div className='btn-area'>
+            <CopyButton />
+          </div>
+          <div className='btn-area'>
+            <Button variant='primary' onClick={resetUpload} >Upload another file</Button>
+          </div>
           <CSVButton arr={ [originColumn, targetColumn] } />
         </div>
         <Table bordered hover responsive striped className='tmx-table'>
@@ -161,7 +165,7 @@ const Uploader = () => {
         </Form.Group>
       }
       { !isTmx && <p>Select a valid .tmx file.</p> }
-      { showSegments ? createTable(originColumn, targetColumn) : file ? <div className='file-uploaded'><p>File <em>{fileName}</em> uploaded!</p><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button><CSVButton arr={ [originColumn, targetColumn] } /></div>: "" }
+      { showSegments ? createTable(originColumn, targetColumn) : file ? <div className='file-uploaded'><p>File <em>{fileName}</em> uploaded!</p><div className='btn-area'><Button variant='primary' onClick={showSegmentsClick} >Show segments</Button></div><CSVButton arr={ [originColumn, targetColumn] } /></div>: "" }
     </div>
   )
   
