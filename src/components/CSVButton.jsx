@@ -23,18 +23,18 @@ const CSVButton = ({ arr }) => {
       originItem = array[0][i];
       targetItem = array[1][i];
 
-      addQuotes(originItem);
-      csvString += originItem + ', ';      
+      originItem = addQuotes(originItem);
+      csvString += originItem + ', ';        
 
-      addQuotes(targetItem);
-      csvString += targetItem + '\n';      
+      targetItem = addQuotes(targetItem);
+      csvString += targetItem + '\n';            
     }
     return csvString;
   }
 
-  const addQuotes = (item) => {
+  const addQuotes = (item) => {    
     if(item.includes(',')){
-      item = '"' + item + '"';    
+      item = '"' + item + '"';  
     }
     return item;
   }
