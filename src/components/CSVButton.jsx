@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import { textEncoder } from 'text-encoding';
 
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
@@ -7,9 +8,13 @@ const CSVButton = ({ arr }) => {
   const createCSV = () => {      
     // Convert to string separated by commas    
     const data = joinArr(arr);
+
+    // Encode the data to windows-1252, to make it compatible with Excel
+    const encoder = new TextEncoder('windows-1252');
+    const encodedData = encoder.encode(data);
       
     // Create blob
-    const blob = new Blob([data], { type: 'text/csv;charset=windows-1252' });    
+    const blob = new Blob([encodedData], { type: 'text/csv;charset=windows-1252' });    
     // Create URL to download blob
     setUrl(URL.createObjectURL(blob));
   }
