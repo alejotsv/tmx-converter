@@ -24,7 +24,7 @@ const CSVButton = ({ arr }) => {
       targetItem = array[1][i];
 
       originItem = addQuotes(originItem);
-      csvString += originItem + ', ';        
+      csvString += originItem + ',';        
 
       targetItem = addQuotes(targetItem);
       csvString += targetItem + '\n';            
