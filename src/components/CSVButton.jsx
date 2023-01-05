@@ -9,7 +9,7 @@ const CSVButton = ({ arr }) => {
     const data = joinArr(arr);
       
     // Create blob
-    const blob = new Blob([data], { type: 'text/csv' });    
+    const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });    
     // Create URL to download blob
     setUrl(URL.createObjectURL(blob));
   }
