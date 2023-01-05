@@ -32,10 +32,11 @@ const CSVButton = ({ arr }) => {
     return csvString;
   }
 
-  const addQuotes = (item) => {    
-    if(item.includes(',')){
-      item = '"' + item + '"';  
+  const addQuotes = (item) => {        
+    if(item.includes('"')){
+      item = item.replace(/\"/g, "\"\"");
     }
+    item = '"' + item + '"';
     return item;
   }
 
