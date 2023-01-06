@@ -47,9 +47,9 @@ const CSVButton = ({ arr }) => {
 
   return(
     <div className='btn-area'>      
-      <Button variant='success' onClick={createCSV} >Create CSV</Button>
-      { url && <a href={url}  download='data.csv'>Download CSV file</a> }
-    </div>
+      <Button variant='success' onClick={createCSV} >Generate CSV</Button>
+      { url && <a href={url}  download='data.csv'>Download CSV file</a> }      
+    </div>    
   )
 }
 
