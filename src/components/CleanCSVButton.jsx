@@ -4,8 +4,9 @@ import { textEncoder } from 'text-encoding';
 
 const CleanCSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
+  const [dirtySegments, setDirtySegments] = useState([]);
 
-  const createCSV = () => {      
+  const createCleanCSV = () => {      
     // Convert to string separated by commas    
     const data = joinArr(arr);
 
@@ -28,11 +29,17 @@ const CleanCSVButton = ({ arr }) => {
       originItem = array[0][i];
       targetItem = array[1][i];
 
-      originItem = addQuotes(originItem);
-      csvString += originItem + ',';        
-
-      targetItem = addQuotes(targetItem);
-      csvString += targetItem + '\n';            
+      if(originItem.includes('{') || targetItem.includes('{') || (originItem.includes('<') && originItem.includes('>')) || (originItem == targetItem)){
+        let tempArr = [originItem, targetItem];
+        dirtySegments.push(tempArr);
+        console.log(dirtySegments);
+      } else {
+        originItem = addQuotes(originItem);
+        csvString += originItem + ',';        
+  
+        targetItem = addQuotes(targetItem);
+        csvString += targetItem + '\n';
+      }
     }
     return csvString;
   }
