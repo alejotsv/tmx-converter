@@ -39,5 +39,6 @@
 
 .file-uploaded > p {
   font-family: var(--bs-body-font-family);
-  font-size: 16px;
+  font-size: 16px;    
+  text-align: center;
 }
