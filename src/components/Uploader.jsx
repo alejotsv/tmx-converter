@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import CopyButton from './CopyButton';
 import CSVButton from './CSVButton';
+import CleanCSVButton from './CleanCSVButton';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
@@ -54,7 +55,8 @@ const Uploader = () => {
           <div className='btn-area'>
             <CopyButton />
           </div>          
-          <CSVButton arr={ [originColumn, targetColumn] } />          
+          <CSVButton arr={ [originColumn, targetColumn] } />
+          <CleanCSVButton arr={ [originColumn, targetColumn] } />          
         </div>
         <Table bordered hover responsive striped className='tmx-table'>
           <thead>

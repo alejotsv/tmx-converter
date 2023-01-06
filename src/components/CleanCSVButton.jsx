@@ -29,18 +29,18 @@ const CleanCSVButton = ({ arr }) => {
       originItem = array[0][i];
       targetItem = array[1][i];
 
-      if(originItem.includes('{') || targetItem.includes('{') || (originItem.includes('<') && originItem.includes('>')) || (originItem == targetItem)){
+      if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)){
         let tempArr = [originItem, targetItem];
         dirtySegments.push(tempArr);
-        console.log(dirtySegments);
       } else {
         originItem = addQuotes(originItem);
         csvString += originItem + ',';        
-  
+        
         targetItem = addQuotes(targetItem);
         csvString += targetItem + '\n';
       }
     }
+    console.log(dirtySegments);
     return csvString;
   }
 
@@ -54,7 +54,7 @@ const CleanCSVButton = ({ arr }) => {
 
   return(
     <div className='btn-area'>      
-      <Button variant='success' onClick={createCSV} >Generate Clean CSV</Button>
+      <Button variant='success' onClick={createCleanCSV} >Generate Clean CSV</Button>
       { url && <a href={url}  download='data.csv'>Download CSV file</a> }      
     </div>    
   )
