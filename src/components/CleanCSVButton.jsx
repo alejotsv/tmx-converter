@@ -20,6 +20,7 @@ const CleanCSVButton = ({ arr }) => {
     setUrl(URL.createObjectURL(blob));
   }
 
+  // Function to create string with clean segments
   const joinArr = (array) => {
     let csvString = '';
     let originItem;
@@ -41,6 +42,25 @@ const CleanCSVButton = ({ arr }) => {
       }
     }
     console.log(dirtySegments);
+    return csvString;
+  }
+
+  // Function to create string with dirty segments
+  const joinDirtyArr = (array) => {
+    let csvString = '';
+    let originItem;
+    let targetItem;
+
+    for(let i=0; i<array[0].length; i++){
+      originItem = array[0][i];
+      targetItem = array[1][i];
+      
+      originItem = addQuotes(originItem);
+      csvString += originItem + ',';        
+        
+      targetItem = addQuotes(targetItem);
+      csvString += targetItem + '\n';      
+    }    
     return csvString;
   }
 
