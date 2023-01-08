@@ -20,18 +20,32 @@
   justify-content: center;
 }
 
+.tmx-buttons > a{
+  display: block;
+}
+
 .tmx-buttons > button{
-  margin-top: 1%;
+  margin-top: 1%;  
 }
 
 .btn-area {
+  display: flex;
+  flex-direction: column;
   padding: 1%;
 }
 
 .btn-area > a{
-  margin-left: 10px;
+  display: block;
+  margin-left: 10px;  
 }
 
+.btn-area > div{
+  display: block;   
+}
+
+.btn-area > div > a{
+  margin-left: 10px;
+}
 
 .instructions {
   margin-bottom: 2%;

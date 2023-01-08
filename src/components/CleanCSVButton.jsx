@@ -22,10 +22,8 @@ const CleanCSVButton = ({ arr }) => {
     setUrl(URL.createObjectURL(blob));
 
     // Generate CSV file with dirty segments
-    // Convert to string separated by commas   
-    console.log(dirtySegments);
-    const dirtyData = joinDirtyArr(dirtySegments);
-    console.log('dirty Data: ' + dirtyData);
+    // Convert to string separated by commas      
+    const dirtyData = joinDirtyArr(dirtySegments);    
 
     // Encode the data to windows-1252, to make it compatible with Excel      
     const encodedDirtyData = encoder.encode(dirtyData);
@@ -105,7 +103,7 @@ const CleanCSVButton = ({ arr }) => {
   return(
     <div className='btn-area'>      
       <Button variant='success' onClick={createCleanCSV} >Generate Clean CSV</Button>
-      { url && <div><a href={url} download='data.csv'>Download clean segments</a><a href={dirtyUrl} download='data.csv'>Download dirty segments</a></div> }      
+      { url && <div><a href={url} download='data.csv'>Clean segments</a><a href={dirtyUrl} download='data.csv'>Dirty segments</a></div> }      
     </div>    
   )
 }
