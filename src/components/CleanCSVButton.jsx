@@ -42,6 +42,13 @@ const CleanCSVButton = ({ arr }) => {
     let originItem;
     let targetItem;   
 
+    // Add origin and target language to the csvString
+    originItem = addQuotes(array[0][0]);
+    csvString += originItem + ',';        
+        
+    targetItem = addQuotes(array[1][0]);
+    csvString += targetItem + '\n';
+
     // Clean dirtySegments array
     setDirtySegments([]);
 
@@ -49,11 +56,12 @@ const CleanCSVButton = ({ arr }) => {
     dirtySegments.push([array[0][0]]);
     dirtySegments.push([array[1][0]]);
 
-    for(let i=0; i<array[0].length; i++){
+    for(let i=1; i<array[0].length; i++){
       originItem = array[0][i];
       targetItem = array[1][i];
 
-      if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)){        
+      if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)
+        || originItem.length<=3 || targetItem.length<=3 ){        
         dirtySegments[0].push(originItem);
         dirtySegments[1].push(targetItem);
       } else {
