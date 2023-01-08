@@ -39,14 +39,14 @@ const CleanCSVButton = ({ arr }) => {
   const joinArr = (array) => {
     let csvString = '';
     let originItem;
-    let targetItem;
+    let targetItem;   
 
-    console.log(array[0]);
+    // Clean dirtySegments array
+    setDirtySegments([]);
 
     // Set origin and target language in dirtySegments array
-    setDirtySegments([array[0][0], array[1][0]]);
-    console.log(array[0][0]);
-    console.log('these are the dirty segments')
+    dirtySegments.push([array[0][0], array[1][0]]);
+    console.log('these are the dirty segments');
     console.log(dirtySegments);
 
     for(let i=0; i<array[0].length; i++){
@@ -63,8 +63,7 @@ const CleanCSVButton = ({ arr }) => {
         targetItem = addQuotes(targetItem);
         csvString += targetItem + '\n';
       }
-    }
-    console.log(dirtySegments);
+    }    
     return csvString;
   }
 
