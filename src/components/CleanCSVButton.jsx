@@ -33,8 +33,7 @@ const CleanCSVButton = ({ arr }) => {
     // Create blob
     const dirtyBlob = new Blob([encodedDirtyData], { type: 'text/csv;charset=windows-1252' });    
     // Create URL to download blob
-    setDirtyUrl(URL.createObjectURL(dirtyBlob));
-    console.log(dirtyUrl);
+    setDirtyUrl(URL.createObjectURL(dirtyBlob));    
   }
 
   // Function to create string with clean segments
@@ -54,9 +53,9 @@ const CleanCSVButton = ({ arr }) => {
       originItem = array[0][i];
       targetItem = array[1][i];
 
-      if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)){
-        let tempArr = [originItem, targetItem];
-        dirtySegments.push(tempArr);
+      if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)){        
+        dirtySegments[0].push(originItem);
+        dirtySegments[1].push(targetItem);
       } else {
         originItem = addQuotes(originItem);
         csvString += originItem + ',';        
