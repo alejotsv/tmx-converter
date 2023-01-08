@@ -27,14 +27,14 @@ const CleanCSVButton = ({ arr }) => {
     const dirtyData = joinDirtyArr(dirtySegments);
     console.log('dirty Data: ' + dirtyData);
 
-    // // Encode the data to windows-1252, to make it compatible with Excel      
-    // const encodedDirtyData = encoder.encode(dirtyData);
+    // Encode the data to windows-1252, to make it compatible with Excel      
+    const encodedDirtyData = encoder.encode(dirtyData);
       
-    // // Create blob
-    // const dirtyBlob = new Blob([encodedDirtyData], { type: 'text/csv;charset=windows-1252' });    
-    // // Create URL to download blob
-    // setDirtyUrl(URL.createObjectURL(dirtyBlob));
-    // console.log(dirtyUrl);
+    // Create blob
+    const dirtyBlob = new Blob([encodedDirtyData], { type: 'text/csv;charset=windows-1252' });    
+    // Create URL to download blob
+    setDirtyUrl(URL.createObjectURL(dirtyBlob));
+    console.log(dirtyUrl);
   }
 
   // Function to create string with clean segments
@@ -70,8 +70,6 @@ const CleanCSVButton = ({ arr }) => {
 
   // Function to create string with dirty segments
   const joinDirtyArr = (array) => {
-    console.log('THis is the array for the dirty data');
-    console.log(array);
     let csvString = '';
     let originItem;
     let targetItem;
