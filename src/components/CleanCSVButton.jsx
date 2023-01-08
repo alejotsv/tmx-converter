@@ -4,9 +4,11 @@ import { textEncoder } from 'text-encoding';
 
 const CleanCSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
+  const [dirtyUrl, setDirtyUrl] = useState();
   const [dirtySegments, setDirtySegments] = useState([]);
 
-  const createCleanCSV = () => {      
+  const createCleanCSV = () => {    
+    // Generate CSV file with clean segments
     // Convert to string separated by commas    
     const data = joinArr(arr);
 
@@ -18,6 +20,18 @@ const CleanCSVButton = ({ arr }) => {
     const blob = new Blob([encodedData], { type: 'text/csv;charset=windows-1252' });    
     // Create URL to download blob
     setUrl(URL.createObjectURL(blob));
+
+    // Generate CSV file with dirty segments
+    // Convert to string separated by commas    
+    const dirtyData = joinDirtyArr(dirtySegments);
+
+    // Encode the data to windows-1252, to make it compatible with Excel    
+    const encodedDirtyData = encoder.encode(dirtyData);
+      
+    // Create blob
+    const dirtyBlob = new Blob([encodedDirtyData], { type: 'text/csv;charset=windows-1252' });    
+    // Create URL to download blob
+    setUrl(URL.createObjectURL(dirtyBlob));
   }
 
   // Function to create string with clean segments
