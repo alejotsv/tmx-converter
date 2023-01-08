@@ -21,9 +21,11 @@ const CleanCSVButton = ({ arr }) => {
     // Create URL to download blob
     setUrl(URL.createObjectURL(blob));
 
-    // // Generate CSV file with dirty segments
-    // // Convert to string separated by commas    
-    // const dirtyData = joinDirtyArr(dirtySegments);
+    // Generate CSV file with dirty segments
+    // Convert to string separated by commas   
+    console.log(dirtySegments);
+    const dirtyData = joinDirtyArr(dirtySegments);
+    console.log('dirty Data: ' + dirtyData);
 
     // // Encode the data to windows-1252, to make it compatible with Excel      
     // const encodedDirtyData = encoder.encode(dirtyData);
@@ -45,9 +47,8 @@ const CleanCSVButton = ({ arr }) => {
     setDirtySegments([]);
 
     // Set origin and target language in dirtySegments array
-    dirtySegments.push([array[0][0], array[1][0]]);
-    console.log('these are the dirty segments');
-    console.log(dirtySegments);
+    dirtySegments.push([array[0][0]]);
+    dirtySegments.push([array[1][0]]);
 
     for(let i=0; i<array[0].length; i++){
       originItem = array[0][i];
@@ -69,6 +70,8 @@ const CleanCSVButton = ({ arr }) => {
 
   // Function to create string with dirty segments
   const joinDirtyArr = (array) => {
+    console.log('THis is the array for the dirty data');
+    console.log(array);
     let csvString = '';
     let originItem;
     let targetItem;
