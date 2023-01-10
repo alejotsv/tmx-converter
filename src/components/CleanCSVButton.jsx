@@ -59,7 +59,7 @@ const CleanCSVButton = ({ arr }) => {
       targetItem = array[1][i];
 
       if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)
-        || originItem.length<=3 || targetItem.length<=3 ){        
+        || originItem.length<=5 || targetItem.length<=5 ){        
         dirtySegments[0].push(originItem);
         dirtySegments[1].push(targetItem);
       } else {
