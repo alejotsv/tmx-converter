@@ -9,12 +9,24 @@ const CSVButton = ({ arr }) => {
   const [showModal, setShowModal] = useState(false);
   const [maxLength, setMaxLength] = useState(5);
 
+  // Handle modal close
   const handleClose = () => {
     setShowModal(false);
     createCSV();
   }
   
+  // Handle modal show
   const handleShow = () => setShowModal(true);
+
+  // Handle modal change
+  const handleChange = (e) => {
+    const input = e.target.value;
+    // Check that the input is a number with 3 or fewer digits
+    if(!isNaN(input) && input.length <= 3){
+      setMaxLength(input);
+    }
+  }
+
 
 
   const createCSV = () => {      
