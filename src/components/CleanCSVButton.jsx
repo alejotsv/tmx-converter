@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import { TextEncoder } from 'text-encoding';
 
 const CleanCSVButton = ({ arr }) => {   
@@ -9,6 +11,7 @@ const CleanCSVButton = ({ arr }) => {
   const [url, setUrl] = useState();
   const [dirtyUrl, setDirtyUrl] = useState();
   const [dirtySegments, setDirtySegments] = useState([]);
+  const [isDirty, setIsDirty] = useState(false);
 
   // Handle modal close
   const handleClose = () => {
@@ -20,7 +23,7 @@ const CleanCSVButton = ({ arr }) => {
   // Handle modal close via Submit button
   const handleCloseSubmit = () => {
     setShowModal(false);
-    createCSV();
+    createCleanCSV();
     console.log("minLength when closing the modal is: " + minLength);
   }
   
@@ -135,7 +138,31 @@ const CleanCSVButton = ({ arr }) => {
 
   return(
     <div className='btn-area'>      
-      <Button variant='success' onClick={createCleanCSV} >Generate Clean CSV</Button>
+      {/* <Button variant='success' onClick={createCleanCSV} >Generate Clean CSV</Button> */}
+      <Button variant='success' onClick={handleShow} >Generate CSV</Button>
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>          
+          <Form.Group
+              className="mb-3"
+              controlId="segment-max-length"
+            >
+              <Form.Label>Select minimum number of characters per segment</Form.Label>
+              <Form.Control type="number" defaultValue={minLength} onChange={handleChange} isInvalid={!validLength} maxLength={2} />
+              <Form.Control.Feedback type="invalid">
+                Enter a valid number between 0 and 20
+              </Form.Control.Feedback>              
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>          
+          <Button variant="primary" onClick={handleCloseSubmit} disabled={!validLength} >
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       { url && <div><a href={url} download='data.csv'>Clean segments</a><a href={dirtyUrl} download='data.csv'>Dirty segments</a></div> }      
     </div>    
   )
