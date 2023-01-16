@@ -3,9 +3,42 @@ import Button from 'react-bootstrap/Button';
 import { TextEncoder } from 'text-encoding';
 
 const CleanCSVButton = ({ arr }) => {   
+  const [showModal, setShowModal] = useState(false);
+  const [minLength, setMinLength] = useState(5);
+  const [validLength, setValidLength] = useState(true);
   const [url, setUrl] = useState();
   const [dirtyUrl, setDirtyUrl] = useState();
   const [dirtySegments, setDirtySegments] = useState([]);
+
+  // Handle modal close
+  const handleClose = () => {
+    setMinLength(5);  
+    console.log("minLength when closing the modal is: " + minLength);
+    setShowModal(false);    
+  }
+
+  // Handle modal close via Submit button
+  const handleCloseSubmit = () => {
+    setShowModal(false);
+    createCSV();
+    console.log("minLength when closing the modal is: " + minLength);
+  }
+  
+  // Handle modal show
+  const handleShow = () => setShowModal(true);
+
+  // Handle modal change
+  const handleChange = (e) => {
+    const input = e.target.value;
+
+    // Check that the input is a number with 3 or fewer digits
+    if(!isNaN(input) && input.length <= 3 && input >=0 && input <= 20){
+      setMinLength(input);
+      setValidLength(true);
+    } else {
+      setValidLength(false);
+    }
+  }
 
   const createCleanCSV = () => {    
     // Generate CSV file with clean segments
