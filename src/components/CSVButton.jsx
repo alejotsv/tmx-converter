@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 import { TextEncoder } from 'text-encoding';
 
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [maxLength, setMaxLength] = useState(5);
 
   const handleClose = () => {
     setShowModal(false);
@@ -64,8 +66,14 @@ const CSVButton = ({ arr }) => {
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <p>Select minimum number of characters per segment</p>
+        <Modal.Body>          
+          <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Select minimum number of characters per segment</Form.Label>
+              <Form.Control as="textarea" rows={1} />
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer>          
           <Button variant="primary" onClick={handleClose}>
