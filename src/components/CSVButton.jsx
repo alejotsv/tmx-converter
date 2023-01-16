@@ -84,7 +84,8 @@ const CSVButton = ({ arr }) => {
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Select minimum number of characters per segment</Form.Label>
-              <Form.Control as="textarea" rows={1} />
+              <Form.Control type="number" defaultValue={maxLength} onChange={handleChange} />
+              {console.log(maxLength)}
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>          
