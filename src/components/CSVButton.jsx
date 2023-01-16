@@ -6,8 +6,8 @@ const CSVButton = ({ arr }) => {
   const [url, setUrl] = useState();
   const [showModal, setShowModal] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
 
   const createCSV = () => {      
