@@ -4,6 +4,11 @@ import { textEncoder } from 'text-encoding';
 
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   const createCSV = () => {      
     // Convert to string separated by commas    
