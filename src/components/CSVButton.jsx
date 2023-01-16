@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { textEncoder } from 'text-encoding';
+import { TextEncoder } from 'text-encoding';
 
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
