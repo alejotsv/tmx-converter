@@ -7,7 +7,8 @@ import { TextEncoder } from 'text-encoding';
 const CSVButton = ({ arr }) => {   
   const [url, setUrl] = useState();
   const [showModal, setShowModal] = useState(false);
-  const [maxLength, setMaxLength] = useState(5);
+  const [minLength, setMinLength] = useState(5);
+  const [validLength, setValidLength] = useState(true);
 
   // Handle modal close
   const handleClose = () => {
@@ -22,8 +23,11 @@ const CSVButton = ({ arr }) => {
   const handleChange = (e) => {
     const input = e.target.value;
     // Check that the input is a number with 3 or fewer digits
-    if(!isNaN(input) && input.length <= 3){
-      setMaxLength(input);
+    if(!isNaN(input) && input.length <= 3 && input >=0 && input <= 20){
+      setMinLength(input);
+      setValidLength(true);
+    } else {
+      setValidLength(false);
     }
   }
 
@@ -81,11 +85,14 @@ const CSVButton = ({ arr }) => {
         <Modal.Body>          
           <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
+              controlId="segment-max-length"
             >
               <Form.Label>Select minimum number of characters per segment</Form.Label>
-              <Form.Control type="number" defaultValue={maxLength} onChange={handleChange} />
-              {console.log(maxLength)}
+              <Form.Control type="number" defaultValue={minLength} onChange={handleChange} isInvalid={!validLength} />
+              <Form.Control.Feedback type="invalid">
+                Enter a valid number between 0 and 20
+              </Form.Control.Feedback>
+              {console.log(minLength)}
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>          
