@@ -12,8 +12,16 @@ const CSVButton = ({ arr }) => {
 
   // Handle modal close
   const handleClose = () => {
+    setMinLength(5);  
+    console.log("minLength when closing the modal is: " + minLength);
+    setShowModal(false);    
+  }
+
+  // Handle modal close via Submit button
+  const handleCloseSubmit = () => {
     setShowModal(false);
     createCSV();
+    console.log("minLength when closing the modal is: " + minLength);
   }
   
   // Handle modal show
@@ -31,7 +39,6 @@ const CSVButton = ({ arr }) => {
       setValidLength(false);
     }
   }
-
 
 
   const createCSV = () => {      
@@ -76,8 +83,8 @@ const CSVButton = ({ arr }) => {
 
   return(
     <div className='btn-area'>      
-      {/* <Button variant='success' onClick={createCSV} >Generate CSV</Button> */}
-      <Button variant='success' onClick={handleShow} >Generate CSV</Button>
+      <Button variant='success' onClick={createCSV} >Generate CSV</Button>
+      {/* <Button variant='success' onClick={handleShow} >Generate CSV</Button>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -92,16 +99,15 @@ const CSVButton = ({ arr }) => {
               <Form.Control type="number" defaultValue={minLength} onChange={handleChange} isInvalid={!validLength} maxLength={2} />
               <Form.Control.Feedback type="invalid">
                 Enter a valid number between 0 and 20
-              </Form.Control.Feedback>
-              {console.log(minLength)}
+              </Form.Control.Feedback>              
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>          
-          <Button variant="primary" onClick={handleClose} disabled={!validLength} >
+          <Button variant="primary" onClick={handleCloseSubmit} disabled={!validLength} >
             Save Changes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
       { url && <a href={url} download='data.csv'>Download CSV file</a> }      
     </div>    
   )
