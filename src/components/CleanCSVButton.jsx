@@ -11,7 +11,7 @@ const CleanCSVButton = ({ arr }) => {
   const [url, setUrl] = useState();
   const [dirtyUrl, setDirtyUrl] = useState();
   const [dirtySegments, setDirtySegments] = useState([]);
-  const [isDirty, setIsDirty] = useState(false);
+  let [isDirty, setIsDirty] = useState(false);
 
   // Handle modal close
   const handleClose = () => {
@@ -93,17 +93,18 @@ const CleanCSVButton = ({ arr }) => {
     for(let i=1; i<array[0].length; i++){
       originItem = array[0][i];
       targetItem = array[1][i];
+      
+      isDirty = checkSegments(originItem, targetItem);
 
-      if(originItem.includes('{') || targetItem.includes('{') || originItem.includes('<') || targetItem.includes('<') || (originItem == targetItem)
-        || originItem.length<=5 || targetItem.length<=5 ){        
+      if(isDirty){        
         dirtySegments[0].push(originItem);
-        dirtySegments[1].push(targetItem);
+        dirtySegments[1].push(targetItem);        
       } else {
         originItem = addQuotes(originItem);
         csvString += originItem + ',';        
         
         targetItem = addQuotes(targetItem);
-        csvString += targetItem + '\n';
+        csvString += targetItem + '\n';        
       }
     }    
     return csvString;
@@ -134,6 +135,14 @@ const CleanCSVButton = ({ arr }) => {
     }
     item = '"' + item + '"';
     return item;
+  }
+
+  const checkSegments = (originSegment, targetSegment) => {
+    if( originSegment.includes('{') || targetSegment.includes('{') || originSegment.includes('<') || targetSegment.includes('<') || (originSegment == targetSegment) || originSegment.length<=minLength || targetSegment.length<=minLength ){  
+        return true;
+      } else {        
+        return false;
+      }
   }
 
   return(
