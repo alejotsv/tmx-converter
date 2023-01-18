@@ -159,7 +159,7 @@ const CleanCSVButton = ({ arr }) => {
               className="mb-3"
               controlId="segment-max-length"
             >
-              <Form.Label>Select minimum number of characters per segment</Form.Label>
+              <Form.Label>Select the minimum number of characters per segment</Form.Label>
               <Form.Control type="number" defaultValue={minLength} onChange={handleChange} isInvalid={!validLength} maxLength={2} />
               <Form.Control.Feedback type="invalid">
                 Enter a valid number between 0 and 20
