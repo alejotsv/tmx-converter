@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 const Instructions = () => {
   return(    
     <Card className="instructions">
-      <Card.Header className="text-center">Upload a TMX file and display segments as a table</Card.Header>
+      <Card.Header className="text-center">TMX to CSV converter (<em>v4.1</em>)</Card.Header>
       <Card.Body>                
           <ul>
             <li>Click on the 'Choose file' button</li>
