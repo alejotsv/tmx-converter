@@ -148,7 +148,7 @@ const CleanCSVButton = ({ arr }) => {
   return(
     <div className='btn-area'>      
       {/* <Button variant='success' onClick={createCleanCSV} >Generate Clean CSV</Button> */}
-      <Button variant='success' onClick={handleShow} >Generate CSV</Button>
+      <Button variant='success' onClick={handleShow} >Generate Clean CSV</Button>
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
