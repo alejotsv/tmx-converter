@@ -146,8 +146,7 @@ const CleanCSVButton = ({ arr }) => {
   }
 
   return(
-    <div className='btn-area'>      
-      {/* <Button variant='success' onClick={createCleanCSV} >Generate Clean CSV</Button> */}
+    <div className='btn-area'>            
       <Button variant='success' onClick={handleShow} >Generate Clean CSV</Button>
 
       <Modal show={showModal} onHide={handleClose}>
@@ -157,7 +156,7 @@ const CleanCSVButton = ({ arr }) => {
         <Modal.Body>          
           <Form.Group
               className="mb-3"
-              controlId="segment-max-length"
+              controlId="segment-min-length"
             >
               <Form.Label>Select the minimum number of characters per segment</Form.Label>
               <Form.Control type="number" defaultValue={minLength} onChange={handleChange} isInvalid={!validLength} maxLength={2} />
