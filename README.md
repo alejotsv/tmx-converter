@@ -3,6 +3,11 @@ Application to upload a TMX file and convert it into a clean CSV version.
 
 ## UI
 Simple UI with an upload button that only accepts TMX files
+Once the file is uploaded, there are 4 options:
+1. Upoad another file: restarts the process with a new file
+2. Show segments: displays all segments as a table on the page
+4. Generate CSV file: generates a CSV file with all segments
+5. Generates Clean CSV file: generates two separate CSV files (clean and dirty segments)
 
 ## Steps
 1. Take a TMX file
