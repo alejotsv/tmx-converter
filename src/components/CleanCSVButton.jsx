@@ -93,7 +93,8 @@ const CleanCSVButton = ({ arr }) => {
     for(let i=1; i<array[0].length; i++){
       originItem = array[0][i];
       targetItem = array[1][i];
-      
+
+      # TODO: additional check for words uploaded by user
       isDirty = checkSegments(originItem, targetItem);
 
       if(isDirty){        
