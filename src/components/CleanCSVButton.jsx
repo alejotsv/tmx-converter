@@ -43,6 +43,8 @@ const CleanCSVButton = ({ arr }) => {
     }
   }
 
+#TODO: integrate with OpenAI to clean each segment
+
   const createCleanCSV = () => {    
     // Generate CSV file with clean segments
     // Convert to string separated by commas    
