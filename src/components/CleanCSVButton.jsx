@@ -186,13 +186,24 @@ const CleanCSVButton = ({ arr }) => {
     return item;
   }
 
+  // TODO: review why return true is not flagging segments as dirty
   const checkSegments = (originSegment, targetSegment) => {
     if( originSegment.includes('{') || targetSegment.includes('{') || originSegment.includes('<') || targetSegment.includes('<') || (originSegment == targetSegment) || originSegment.length<=minLength || targetSegment.length<=minLength ){  
         return true;
       } else {      
         if(exclusions.length > 0){
           console.log('There are exclusions');
-          exclusions.map( exclusion => (originSegment.includes(exclusion) || targetSegment.includes(exclusion)) ? console.log('it is there') : console.log('not there') );
+          for (let i=0; i<exclusions.length; i++){
+            if(originSegment.includes(exclusions[i]) || targetSegment.includes(exclusions[i])){
+              console.log(exclusions[i] + ' found in ' + originSegment + '/' + targetSegment);
+              return true;
+              break;            
+            } else {
+              console.log(exclusions[i] + ' not found in ' + originSegment + '/' + targetSegment);
+              return false;
+            }
+          }
+        
         } else {
           console.log('there are no exclusions');
           return false;
