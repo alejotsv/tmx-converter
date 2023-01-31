@@ -8,8 +8,7 @@ const CleanCSVButton = ({ arr }) => {
   const [showModal, setShowModal] = useState(false);
   const [showExclusionsModal, setShowExclusionsModal] = useState(false)
   const [minLength, setMinLength] = useState(5);
-  const [validLength, setValidLength] = useState(true);
-  const [exclusionsFile, setExclusionsFile] = useState(null);
+  const [validLength, setValidLength] = useState(true);  
   const [validExclusionsFile, setValidExclusionsFile] = useState(true);
   const [exclusions, setExclusions] = useState([]);
   const [url, setUrl] = useState();
@@ -55,9 +54,14 @@ const CleanCSVButton = ({ arr }) => {
   const handleExclusionCloseSubmit = () => {   
     setShowExclusionsModal(false); 
     setValidExclusionsFile(true);    
-    readExclusionsFile(exclusionsFile);
-    createCleanCSV();   
-    setExclusionsFile(null);
+    if (exclusions){
+      // Read exclusions file
+      console.log(exclusions);      
+      createCleanCSV();            
+    } else {
+      createCleanCSV();
+    }    
+    setExclusions(null)
   }
 
   // Handle exclusions modal change
@@ -65,14 +69,11 @@ const CleanCSVButton = ({ arr }) => {
     const reader = new FileReader();
 
     const fileName = e.target.files[0].name;
-    const fileExtension = fileName.substring(fileName.length-4);
-    console.log(fileExtension);
+    const fileExtension = fileName.substring(fileName.length-4);    
     if(fileExtension == '.txt'){
-      setValidExclusionsFile(true);
-      console.log('File is txt')
-      reader.onload = (e) => {
-        setExclusionsFile(e.target.result);
-        console.log(exclusionsFile);
+      setValidExclusionsFile(true);      
+      reader.onload = (e) => {        
+        setExclusions(e.target.result.slice(0, -1).split('\n'));       
       }  
       reader.readAsText(e.target.files[0]);
     } else {      
@@ -84,22 +85,13 @@ const CleanCSVButton = ({ arr }) => {
   const handleRemoveFile = () => {
     document.getElementById("file-input").value = "";    
     setValidExclusionsFile(true);
-    setExclusionsFile(null);    
+    setExclusions(null);    
   }
-
-  // Read exclusions file
-  const readExclusionsFile = (file) => {
-    const reader = new FileReader();
-    console.log('Reading the file');
-    console.log(file);
-    const splitFile = file.slice(0, -1).split('\n');
-    splitFile.map( line => console.log(line) );
-  }
-
 
 // TODO: integrate with OpenAI to clean each segment
 
   const createCleanCSV = () => {    
+    console.log(exclusions);
     // Generate CSV file with clean segments
     // Convert to string separated by commas    
     const data = joinArr(arr);
