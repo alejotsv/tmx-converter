@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 const Instructions = () => {
-#TODO: Include instructions to upload text file with terms to exclude
+// TODO: Include instructions to upload text file with terms to exclude
   return(    
     <Card className="instructions">
       <Card.Header className="text-center">TMX to CSV converter (<em>v4.1</em>)</Card.Header>

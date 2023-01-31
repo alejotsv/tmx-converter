@@ -43,7 +43,7 @@ const CleanCSVButton = ({ arr }) => {
     }
   }
 
-#TODO: integrate with OpenAI to clean each segment
+// TODO: integrate with OpenAI to clean each segment
 
   const createCleanCSV = () => {    
     // Generate CSV file with clean segments
@@ -96,7 +96,7 @@ const CleanCSVButton = ({ arr }) => {
       originItem = array[0][i];
       targetItem = array[1][i];
 
-      # TODO: additional check for words uploaded by user
+      // TODO: additional check for words uploaded by user
       isDirty = checkSegments(originItem, targetItem);
 
       if(isDirty){        
