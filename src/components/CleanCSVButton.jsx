@@ -11,6 +11,7 @@ const CleanCSVButton = ({ arr }) => {
   const [validLength, setValidLength] = useState(true);
   const [exclusionsFile, setExclusionsFile] = useState(null);
   const [validExclusionsFile, setValidExclusionsFile] = useState(true);
+  const [exclusions, setExclusions] = useState([]);
   const [url, setUrl] = useState();
   const [dirtyUrl, setDirtyUrl] = useState();
   const [dirtySegments, setDirtySegments] = useState([]);
@@ -53,8 +54,8 @@ const CleanCSVButton = ({ arr }) => {
   // Handle exclusions modal close via Submit button
   const handleExclusionCloseSubmit = () => {   
     setShowExclusionsModal(false); 
-    setValidExclusionsFile(true);
-    console.log(exclusionsFile);
+    setValidExclusionsFile(true);    
+    readExclusionsFile(exclusionsFile);
     createCleanCSV();   
     setExclusionsFile(null);
   }
@@ -84,6 +85,12 @@ const CleanCSVButton = ({ arr }) => {
     document.getElementById("file-input").value = "";    
     setValidExclusionsFile(true);
     setExclusionsFile(null);    
+  }
+
+  // Read exclusions file
+  const readExclusionsFile = (file) => {
+    console.log('Reading the file');
+    console.log(exclusionsFile);
   }
 
 
