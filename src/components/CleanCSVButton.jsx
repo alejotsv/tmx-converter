@@ -89,8 +89,11 @@ const CleanCSVButton = ({ arr }) => {
 
   // Read exclusions file
   const readExclusionsFile = (file) => {
+    const reader = new FileReader();
     console.log('Reading the file');
-    console.log(exclusionsFile);
+    console.log(file);
+    const splitFile = file.slice(0, -1).split('\n');
+    splitFile.map( line => console.log(line) );
   }
 
 
