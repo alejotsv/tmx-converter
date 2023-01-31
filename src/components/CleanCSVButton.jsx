@@ -9,6 +9,8 @@ const CleanCSVButton = ({ arr }) => {
   const [showExclusionsModal, setShowExclusionsModal] = useState(false)
   const [minLength, setMinLength] = useState(5);
   const [validLength, setValidLength] = useState(true);
+  const [exclusionsFile, setExclusionsFile] = useState(null);
+  const [validExclusionsFile, setValidExclusionsFile] = useState(true);
   const [url, setUrl] = useState();
   const [dirtyUrl, setDirtyUrl] = useState();
   const [dirtySegments, setDirtySegments] = useState([]);
@@ -42,16 +44,36 @@ const CleanCSVButton = ({ arr }) => {
     }
   }
 
-  // Handle exclusion modal close
+  // Handle exclusions modal close
   const handleExclusionClose = () => {
     console.log('Modal closed');
     setShowExclusionsModal(false);
   }
 
-  // Handle exclusion modal close via Submit button
+  // Handle exclusions modal close via Submit button
   const handleExclusionCloseSubmit = () => {   
     setShowExclusionsModal(false); 
     createCleanCSV();   
+  }
+
+  // Handle exclusions modal change
+  const handleExclusionsChange = (e) => {
+    const reader = new FileReader();
+
+    const fileName = e.target.files[0].name;
+    const fileExtension = fileName.substring(fileName.length-4);
+    console.log(fileExtension);
+    if(fileExtension == '.txt'){
+      setValidExclusionsFile(true);
+      console.log('File is txt')
+      reader.onload = (e) => {
+        setExclusionsFile(e.target.result);
+      }  
+      reader.readAsText(e.target.files[0]);
+    } else {      
+      setValidExclusionsFile(false);
+      console.log('File is not txt');
+    }
   }
 
 
@@ -192,18 +214,15 @@ const CleanCSVButton = ({ arr }) => {
         </Modal.Header>
         <Modal.Body>          
           <Form.Group className="mb-3">
-              <Form.Label>Upload a .txt file with one character/term per line</Form.Label>
-              <Form.Control onChange={console.log('Changed')} />
+              <Form.Label>Upload a .txt file with one character/term per line (optional)</Form.Label>
+              <Form.Control type='file' accept='.txt' onChange={handleExclusionsChange} />
               <Form.Control.Feedback type="invalid">
-                Upload a valid .txt file
+                Upload a valid .txt file or click on Submit
               </Form.Control.Feedback>              
           </Form.Group>
         </Modal.Body>
-        <Modal.Footer>                    
-          <Button variant="primary" onClick={console.log('clicked')} >
-            Upload file
-          </Button>
-          <Button variant="primary" onClick={handleExclusionCloseSubmit} disabled={!validLength} >
+        <Modal.Footer>                              
+          <Button variant="primary" onClick={handleExclusionCloseSubmit} >
             Submit
           </Button>
         </Modal.Footer>
