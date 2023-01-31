@@ -45,15 +45,18 @@ const CleanCSVButton = ({ arr }) => {
   }
 
   // Handle exclusions modal close
-  const handleExclusionClose = () => {
-    console.log('Modal closed');
+  const handleExclusionClose = () => {    
     setShowExclusionsModal(false);
+    setValidExclusionsFile(true);
   }
 
   // Handle exclusions modal close via Submit button
   const handleExclusionCloseSubmit = () => {   
     setShowExclusionsModal(false); 
+    setValidExclusionsFile(true);
+    console.log(exclusionsFile);
     createCleanCSV();   
+    setExclusionsFile(null);
   }
 
   // Handle exclusions modal change
@@ -68,12 +71,19 @@ const CleanCSVButton = ({ arr }) => {
       console.log('File is txt')
       reader.onload = (e) => {
         setExclusionsFile(e.target.result);
+        console.log(exclusionsFile);
       }  
       reader.readAsText(e.target.files[0]);
     } else {      
-      setValidExclusionsFile(false);
-      console.log('File is not txt');
+      setValidExclusionsFile(false);      
     }
+  }
+
+  // Handle remove file
+  const handleRemoveFile = () => {
+    document.getElementById("file-input").value = "";    
+    setValidExclusionsFile(true);
+    setExclusionsFile(null);    
   }
 
 
@@ -215,14 +225,17 @@ const CleanCSVButton = ({ arr }) => {
         <Modal.Body>          
           <Form.Group className="mb-3">
               <Form.Label>Upload a .txt file with one character/term per line (optional)</Form.Label>
-              <Form.Control type='file' accept='.txt' onChange={handleExclusionsChange} />
+              <Form.Control id="file-input" type='file' accept='.txt' onChange={handleExclusionsChange}  isInvalid={!validExclusionsFile} />
               <Form.Control.Feedback type="invalid">
-                Upload a valid .txt file or click on Submit
+                Upload a valid .txt file or remove file and click on Submit
               </Form.Control.Feedback>              
           </Form.Group>
         </Modal.Body>
-        <Modal.Footer>                              
-          <Button variant="primary" onClick={handleExclusionCloseSubmit} >
+        <Modal.Footer>   
+          <Button variant="primary" onClick={handleRemoveFile} >
+            Remove File
+          </Button>                           
+          <Button variant="success" onClick={handleExclusionCloseSubmit} disabled={!validExclusionsFile} >
             Submit
           </Button>
         </Modal.Footer>
