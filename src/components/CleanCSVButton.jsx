@@ -189,8 +189,14 @@ const CleanCSVButton = ({ arr }) => {
   const checkSegments = (originSegment, targetSegment) => {
     if( originSegment.includes('{') || targetSegment.includes('{') || originSegment.includes('<') || targetSegment.includes('<') || (originSegment == targetSegment) || originSegment.length<=minLength || targetSegment.length<=minLength ){  
         return true;
-      } else {        
-        return false;
+      } else {      
+        if(exclusions.length > 0){
+          console.log('There are exclusions');
+          exclusions.map( exclusion => (originSegment.includes(exclusion) || targetSegment.includes(exclusion)) ? console.log('it is there') : console.log('not there') );
+        } else {
+          console.log('there are no exclusions');
+          return false;
+        }
       }
   }
 
