@@ -6,6 +6,7 @@ import { TextEncoder } from 'text-encoding';
 
 const CleanCSVButton = ({ arr }) => {   
   const [showModal, setShowModal] = useState(false);
+  const [showExclusionsModal, setShowExclusionsModal] = useState(false)
   const [minLength, setMinLength] = useState(5);
   const [validLength, setValidLength] = useState(true);
   const [url, setUrl] = useState();
@@ -15,16 +16,14 @@ const CleanCSVButton = ({ arr }) => {
 
   // Handle modal close
   const handleClose = () => {
-    setMinLength(5);  
-    console.log("minLength when closing the modal is: " + minLength);
-    setShowModal(false);    
+    setMinLength(5);      
+    setShowModal(false);        
   }
 
   // Handle modal close via Submit button
   const handleCloseSubmit = () => {
     setShowModal(false);
-    createCleanCSV();
-    console.log("minLength when closing the modal is: " + minLength);
+    setShowExclusionsModal(true);       
   }
   
   // Handle modal show
@@ -42,6 +41,19 @@ const CleanCSVButton = ({ arr }) => {
       setValidLength(false);
     }
   }
+
+  // Handle exclusion modal close
+  const handleExclusionClose = () => {
+    console.log('Modal closed');
+    setShowExclusionsModal(false);
+  }
+
+  // Handle exclusion modal close via Submit button
+  const handleExclusionCloseSubmit = () => {   
+    setShowExclusionsModal(false); 
+    createCleanCSV();   
+  }
+
 
 // TODO: integrate with OpenAI to clean each segment
 
@@ -154,7 +166,7 @@ const CleanCSVButton = ({ arr }) => {
 
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Minimum Characters per Segment</Modal.Title>
         </Modal.Header>
         <Modal.Body>          
           <Form.Group
@@ -168,12 +180,34 @@ const CleanCSVButton = ({ arr }) => {
               </Form.Control.Feedback>              
           </Form.Group>
         </Modal.Body>
-        <Modal.Footer>          
+        <Modal.Footer>                    
           <Button variant="primary" onClick={handleCloseSubmit} disabled={!validLength} >
             Save Changes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal>      
+      <Modal show={showExclusionsModal} onHide={handleExclusionClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Exclusions file</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>          
+          <Form.Group className="mb-3">
+              <Form.Label>Upload a .txt file with one character/term per line</Form.Label>
+              <Form.Control onChange={console.log('Changed')} />
+              <Form.Control.Feedback type="invalid">
+                Upload a valid .txt file
+              </Form.Control.Feedback>              
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>                    
+          <Button variant="primary" onClick={console.log('clicked')} >
+            Upload file
+          </Button>
+          <Button variant="primary" onClick={handleExclusionCloseSubmit} disabled={!validLength} >
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>     
       { url && <div><a href={url} download='data.csv'>Clean segments</a><a href={dirtyUrl} download='data.csv'>Dirty segments</a></div> }      
     </div>    
   )
