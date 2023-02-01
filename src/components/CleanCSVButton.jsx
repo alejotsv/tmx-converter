@@ -193,17 +193,17 @@ const CleanCSVButton = ({ arr }) => {
       } else {      
         if(exclusions.length > 0){
           console.log('There are exclusions');
-          for (let i=0; i<exclusions.length; i++){
+          for (let i=0; i<exclusions.length; i++){            
             if(originSegment.includes(exclusions[i]) || targetSegment.includes(exclusions[i])){
               console.log(exclusions[i] + ' found in ' + originSegment + '/' + targetSegment);
-              return true;
-              break;            
+              return true;                          
             } else {
-              console.log(exclusions[i] + ' not found in ' + originSegment + '/' + targetSegment);
-              return false;
+              console.log(exclusions[i] + ' not found in ' + originSegment + '/' + targetSegment);              
             }
-          }
-        
+          }          
+          // All exclusions checked and none found in segment
+          console.log("there are exclusions, but none found in the segment")
+          return false
         } else {
           console.log('there are no exclusions');
           return false;
