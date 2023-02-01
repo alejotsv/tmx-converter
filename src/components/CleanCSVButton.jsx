@@ -191,21 +191,16 @@ const CleanCSVButton = ({ arr }) => {
     if( originSegment.includes('{') || targetSegment.includes('{') || originSegment.includes('<') || targetSegment.includes('<') || (originSegment == targetSegment) || originSegment.length<=minLength || targetSegment.length<=minLength ){  
         return true;
       } else {      
-        if(exclusions.length > 0){
-          console.log('There are exclusions');
+        if(exclusions.length > 0){          
           for (let i=0; i<exclusions.length; i++){            
-            if(originSegment.includes(exclusions[i]) || targetSegment.includes(exclusions[i])){
-              console.log(exclusions[i] + ' found in ' + originSegment + '/' + targetSegment);
-              return true;                          
-            } else {
-              console.log(exclusions[i] + ' not found in ' + originSegment + '/' + targetSegment);              
-            }
+            if(originSegment.includes(exclusions[i]) || targetSegment.includes(exclusions[i])){              
+              return true;
+            } 
           }          
-          // All exclusions checked and none found in segment
-          console.log("there are exclusions, but none found in the segment")
+          // All exclusions checked and none found in segment          
           return false
-        } else {
-          console.log('there are no exclusions');
+        } else {   
+          // Exclusions document empty or non-existent
           return false;
         }
       }
