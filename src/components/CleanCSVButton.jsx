@@ -185,8 +185,7 @@ const CleanCSVButton = ({ arr }) => {
     item = '"' + item + '"';
     return item;
   }
-
-  // TODO: review why return true is not flagging segments as dirty
+  
   const checkSegments = (originSegment, targetSegment) => {
     if( originSegment.includes('{') || targetSegment.includes('{') || originSegment.includes('<') || targetSegment.includes('<') || (originSegment == targetSegment) || originSegment.length<=minLength || targetSegment.length<=minLength ){  
         return true;
